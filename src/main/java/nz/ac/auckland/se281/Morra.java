@@ -6,18 +6,22 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
   
-  String [] options;
+  public String [] options;
+  public int rounds;
+
 
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
+    this.rounds = 0;
   }
 
   public void play() {
+    rounds++;
 
-    MessageCli.START_ROUND.printMessage("1");
+    MessageCli.START_ROUND.printMessage(Integer.toString(rounds));
 
     MessageCli.ASK_INPUT.printMessage();
 
