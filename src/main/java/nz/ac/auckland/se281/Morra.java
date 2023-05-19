@@ -63,12 +63,16 @@ public class Morra {
     //Bring the name variable in play()
     String name = options[0];
 
+    int jarvisFinger = Jarvis.getFinger();
+    int jarvisSum = Jarvis.getSum();
+
+
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
 
-    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(Jarvis.getFinger()), String.valueOf(Jarvis.getSum()));
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
-    int winSum = fingers + Jarvis.getFinger();
+    int winSum = fingers + jarvisFinger;
 
     if(sum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
