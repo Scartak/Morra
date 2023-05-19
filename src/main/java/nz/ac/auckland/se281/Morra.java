@@ -15,12 +15,20 @@ public class Morra {
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
+  public int getSum() {
+    int sum = 0;
+    for(Integer i: allSumList) {
+      sum += i;
+    }
+    return sum;
+  }
+
   public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
-    this.rounds = 0;
+    this.rounds = 1;
     this.difficulty = difficulty;
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy");
@@ -35,7 +43,6 @@ public class Morra {
   }
 
   public void play() {
-    rounds++;
 
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds));
 
@@ -124,6 +131,7 @@ public class Morra {
     
     allSumList.add(humanFingers);
   }
+  rounds++;
   }
 
   public void showStats() {}
