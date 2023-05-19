@@ -33,36 +33,34 @@ public class Morra {
     String sumString = input.split(" ")[1];
 
     //check if fingerString is an integer
-    try {
-      int fingers = Integer.parseInt(fingerString);
-    } catch (NumberFormatException e) {
+    if(Utils.isInteger(fingerString) == false) {
       MessageCli.INVALID_INPUT.printMessage();
       play();
       return;
     }
 
-    //check if sumString is an integer
-    try {
-      int sum = Integer.parseInt(sumString);
-    } catch (NumberFormatException e) {
+    if(Utils.isInteger(sumString) == false) {
       MessageCli.INVALID_INPUT.printMessage();
       play();
       return;
     }
+
+    // Sets the input to integers
     int fingers = Integer.parseInt(input.split(" ")[0]);
     int sum = Integer.parseInt(input.split(" ")[1]);
 
+    // Check if the input is valid
     if(fingers < 1 || fingers > 5 || sum < 1 || sum > 10 ) {
       MessageCli.INVALID_INPUT.printMessage();
       play();
       return;
     }
 
+    //Bring the name variable in play()
     String name = options[0];
 
+    //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
-    
-
   }
 
   public void showStats() {}
