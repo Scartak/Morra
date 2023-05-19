@@ -9,6 +9,7 @@ public class Morra {
   public String [] options;
   public int rounds;
   Stratergy Jarvis;
+  Difficulty difficulty;
 
   public Morra() {}
 
@@ -16,6 +17,7 @@ public class Morra {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
     this.rounds = 0;
+    this.difficulty = difficulty;
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy");
     }
@@ -62,7 +64,11 @@ public class Morra {
 
     //Bring the name variable in play()
     String name = options[0];
+    
+    if(difficulty == Difficulty.EASY) {
+   
 
+    Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
 
@@ -83,6 +89,7 @@ public class Morra {
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
+  }
   }
 
   public void showStats() {}
