@@ -6,7 +6,7 @@ public class StratergyFactory {
             case "Easy":
                 return new Random();
                case "Medium":
-                return new Average();
+                return new Average(null);
              case "Hard":
                     return new Top();
              }

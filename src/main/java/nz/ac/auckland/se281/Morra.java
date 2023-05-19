@@ -15,13 +15,17 @@ public class Morra {
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
-  public int getSum() {
-    int sum = 0;
+  double avgSum;
+
+  public double getAverageSum() {
+    double sum = 0;
     for(Integer i: allSumList) {
       sum += i;
     }
-    return sum;
+    avgSum = sum/allSumList.size();
+    return avgSum;
   }
+
 
   public Morra() {}
 
