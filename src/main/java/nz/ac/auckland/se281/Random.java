@@ -8,11 +8,11 @@ public class Random implements Stratergy{
     @Override
     public void execute() {
         // generate random number of fingers and sum
-        int rand1 = Utils.getRandomNumber(1, 5);
-        int rand2 = Utils.getRandomNumber(rand1+1, rand1+5);
+        int tempFinger = Utils.getRandomNumber(1, 5);
+        int tempSum = Utils.getRandomNumber(tempFinger+1, tempFinger+5);
 
-        this.fingers = rand1;
-        this.sum = rand2;
+        this.fingers = tempFinger;
+        this.sum = tempSum;
         
     }
 

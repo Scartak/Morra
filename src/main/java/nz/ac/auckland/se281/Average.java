@@ -7,10 +7,7 @@ public class Average implements Stratergy {
 
     @Override
     public void execute() {
-        // generate random number of fingers and sum
-        fingers = 2;
-
-        sum = 3;
+        int tempFinger = Utils.getRandomNumber(1, 5);
     }
 
     @Override

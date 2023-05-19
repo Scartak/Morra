@@ -1,5 +1,7 @@
 package nz.ac.auckland.se281;
 
+import java.util.ArrayList;
+
 import javax.swing.text.html.Option;
 
 import nz.ac.auckland.se281.Main.Difficulty;
@@ -10,6 +12,8 @@ public class Morra {
   public int rounds;
   Stratergy Jarvis;
   Difficulty difficulty;
+  //Create a public list of all the sums 
+  public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
   public Morra() {}
 
@@ -20,6 +24,12 @@ public class Morra {
     this.difficulty = difficulty;
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy");
+    }
+    else if (difficulty == Difficulty.MEDIUM) {
+      Jarvis = StratergyFactory.getStratergy("Medium");
+    }
+    else if (difficulty == Difficulty.HARD) {
+      Jarvis = StratergyFactory.getStratergy("Hard");
     }
       
   }
@@ -52,11 +62,11 @@ public class Morra {
     }
 
     // Sets the input to integers
-    int fingers = Integer.parseInt(input.split(" ")[0]);
-    int sum = Integer.parseInt(input.split(" ")[1]);
+    int humanFingers = Integer.parseInt(input.split(" ")[0]);
+    int humanSum = Integer.parseInt(input.split(" ")[1]);
 
     // Check if the input is valid
-    if(fingers < 1 || fingers > 5 || sum < 1 || sum > 10 ) {
+    if(humanFingers < 1 || humanFingers > 5 || humanSum < 1 || humanSum > 10 ) {
       MessageCli.INVALID_INPUT.printMessage();
       play();
       return;
@@ -78,17 +88,41 @@ public class Morra {
 
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
-    int winSum = fingers + jarvisFinger;
+    int winSum = humanFingers + jarvisFinger;
 
-    if(sum == winSum){
+    if(humanSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
     }
-    else if( Jarvis.getSum() == winSum){
+    else if( jarvisSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
+  }
+
+  else if(difficulty == Difficulty.MEDIUM) {
+    Jarvis.execute();
+    int jarvisFinger = Jarvis.getFinger();
+    int jarvisSum = Jarvis.getSum();
+
+    MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
+
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
+
+    int winSum = humanFingers + jarvisFinger;
+
+    if(humanSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    }
+    else if( jarvisSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    }
+    else{
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    
+    allSumList.add(humanFingers);
   }
   }
 
