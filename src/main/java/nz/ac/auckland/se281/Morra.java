@@ -8,7 +8,7 @@ public class Morra {
   
   public String [] options;
   public int rounds;
-
+  Stratergy Jarvis;
 
   public Morra() {}
 
@@ -16,6 +16,10 @@ public class Morra {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
     this.rounds = 0;
+    if(difficulty == Difficulty.EASY) {
+      Jarvis = StratergyFactory.getStratergy("Easy");
+    }
+      
   }
 
   public void play() {
@@ -61,6 +65,8 @@ public class Morra {
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
+
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(Jarvis.getFinger()), String.valueOf(Jarvis.getSum()));
   }
 
   public void showStats() {}
