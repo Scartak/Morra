@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 public class Random implements Stratergy{
+    
     public int fingers = Utils.getRandomNumber(1, 5);
     public  int sum = Utils.getRandomNumber(fingers+1, fingers+5);
 
