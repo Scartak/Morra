@@ -558,7 +558,7 @@ public class MainTest {
     }
 
     @Test
-    public void T4_01_play_ask_for_input_Jarvis() throws Exception {
+      public void T4_01_play_ask_for_input_Jarvis() throws Exception {
       runCommands(
           NEW_GAME + " HARD 1",
           "Valerio",

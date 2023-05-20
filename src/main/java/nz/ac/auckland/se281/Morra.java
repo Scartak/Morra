@@ -13,7 +13,10 @@ public class Morra {
   Stratergy Jarvis;
   Difficulty difficulty;
   int playerFingers;
+  int playerPoints;
+  int jarvisPoints;
   Player player;
+  int pointsToWin;
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
@@ -25,10 +28,14 @@ public class Morra {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
     this.rounds = 1;
+    this.playerPoints = 0;
+    this.jarvisPoints = 0;
     this.difficulty = difficulty;
-        //Creates a new player object
-        Player player = new Player();
-        this.player = player;
+    //Creates a new player object
+    Player player = new Player();
+    this.player = player;
+    this.pointsToWin = pointsToWin;
+
 
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy", player);
@@ -44,6 +51,10 @@ public class Morra {
 
   public void play() {
 
+    if(rounds == 0){
+      MessageCli.GAME_NOT_STARTED.printMessage();
+      return;
+    }
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds));
 
     MessageCli.ASK_INPUT.printMessage();
@@ -99,11 +110,16 @@ public class Morra {
 
     int winSum = humanFingers + jarvisFinger;
 
-    if(humanSum == winSum){
+    if(humanSum == jarvisSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    else if(humanSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      playerPoints++;
     }
     else if( jarvisSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      jarvisPoints++;
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
@@ -129,15 +145,20 @@ public class Morra {
 
     int winSum = humanFingers + jarvisFinger;
 
-    if(humanSum == winSum){
+    if(humanSum == jarvisSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    else if(humanSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      playerPoints++;
     }
     else if( jarvisSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      jarvisPoints++;
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-    }  
+    } 
     
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;
@@ -145,8 +166,8 @@ public class Morra {
   }
 
   else if(difficulty == Difficulty.HARD){
-    //if rounds is less than 4, jarvis would be easy
-    if(rounds <= 4){
+    //if rounds is less than 3, jarvis would be easy
+    if(rounds <= 3){
       Jarvis = new Random();
     }
     else{
@@ -163,7 +184,50 @@ public class Morra {
 
     int winSum = humanFingers + jarvisFinger;
 
-    if(humanSum == winSum){
+    if(humanSum == jarvisSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    else if(humanSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      playerPoints++;
+    }
+    else if( jarvisSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      jarvisPoints++;
+    }
+    else{
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    
+    allSumList.add(humanFingers);
+    player.sendToPlayer(humanFingers);;
+  }
+
+  else if(difficulty == Difficulty.MASTER){
+    if(rounds <= 3){
+      Jarvis = new Random();
+    }
+    else if(rounds % 2 == 0){
+      Jarvis = StratergyFactory.getStratergy("Medium", player);
+    }
+    else if(rounds % 2 != 0){
+      Jarvis = StratergyFactory.getStratergy("Hard", player);
+    }
+     
+    Jarvis.execute();
+    int jarvisFinger = Jarvis.getFinger();
+    int jarvisSum = Jarvis.getSum();
+
+    MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
+
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
+
+    int winSum = humanFingers + jarvisFinger;
+
+    if(humanSum == jarvisSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }
+    else if(humanSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
     }
     else if( jarvisSum == winSum){
@@ -171,7 +235,8 @@ public class Morra {
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-    }  
+    }
+  
     
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;

@@ -13,7 +13,7 @@ public class Top implements Stratergy {
     public void execute() {
         // generate random number of fingers 
         int tempFingers = Utils.getRandomNumber(1, 5);
-        int tempSum = fingers + top;
+        int tempSum = tempFingers + top;
 
         this.fingers = tempFingers;
         this.sum = tempSum;
