@@ -11,11 +11,6 @@ public class Player {
         fingersList.add(fingers);
     }
     
-    // public Player(int fingers) {
-    //     this.fingers = fingers;
-    //     //add the fingers to the list
-    //     fingersList.add(fingers);
-    // }
 
     public double getAvgFingers(){
         double sum = 0;
@@ -27,5 +22,25 @@ public class Player {
     }
     return sum /(fingersList.size());
     }
+
+    //Get THE most common number of fingerS
+    public int getMostCommonFingers(){
+        int maxCount = 0;
+        int maxFingers = 0;
+        for (int i: fingersList){
+            int count = 0;
+            for (int j: fingersList){
+                if (i == j){
+                    count++;
+                }
+            }
+            if (count > maxCount){
+                maxCount = count;
+                maxFingers = i;
+            }
+        }
+        return maxFingers;
+    }
+
 
 }

@@ -137,11 +137,44 @@ public class Morra {
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
-    }
+    }  
     
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;
 
+  }
+
+  else if(difficulty == Difficulty.HARD){
+    //if rounds is less than 4, jarvis would be easy
+    if(rounds <= 4){
+      Jarvis = new Random();
+    }
+    else{
+      Jarvis = StratergyFactory.getStratergy("Hard", player);
+    }
+    
+    Jarvis.execute();
+    int jarvisFinger = Jarvis.getFinger();
+    int jarvisSum = Jarvis.getSum();
+
+    MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
+
+    MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
+
+    int winSum = humanFingers + jarvisFinger;
+
+    if(humanSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+    }
+    else if( jarvisSum == winSum){
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+    }
+    else{
+      MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
+    }  
+    
+    allSumList.add(humanFingers);
+    player.sendToPlayer(humanFingers);;
   }
   rounds++;
   

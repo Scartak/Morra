@@ -38,5 +38,7 @@ public class Average implements Stratergy {
         return sum;
     }
     
-
+    public int getAvg(){
+        return avg;
+    }
 }

@@ -3,13 +3,20 @@ package nz.ac.auckland.se281;
 public class Top implements Stratergy {
     public int fingers;
     public  int sum;
+    int top;    
+
+    public Top(int mostCommonFing){
+        this.top = mostCommonFing;
+    }
 
     @Override
     public void execute() {
-        // generate random number of fingers and sum
-        fingers = Utils.getRandomNumber(1, 5);
+        // generate random number of fingers 
+        int tempFingers = Utils.getRandomNumber(1, 5);
+        int tempSum = fingers + top;
 
-        sum = Utils.getRandomNumber(fingers+1, fingers+5);
+        this.fingers = tempFingers;
+        this.sum = tempSum;
     }
 
     @Override
