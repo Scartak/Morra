@@ -6,18 +6,26 @@ public class Player {
     public ArrayList <Integer> fingersList = new ArrayList<Integer>();
     int fingers;
 
-    public Player(int fingers) {
+    public void sendToPlayer(int fingers){
         this.fingers = fingers;
-        //add the fingers to the list
         fingersList.add(fingers);
     }
+    
+    // public Player(int fingers) {
+    //     this.fingers = fingers;
+    //     //add the fingers to the list
+    //     fingersList.add(fingers);
+    // }
 
     public double getAvgFingers(){
         double sum = 0;
-        for (int i = 0; i < fingersList.size(); i++) {
-            sum += fingersList.get(i);
+        if(fingersList.size() > 1){
+
+        for (int i: fingersList){
+            sum += i;
         }
-        return sum / fingersList.size();
+    }
+    return sum /(fingersList.size());
     }
 
 }

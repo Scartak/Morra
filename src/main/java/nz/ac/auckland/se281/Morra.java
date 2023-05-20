@@ -27,7 +27,8 @@ public class Morra {
     this.rounds = 1;
     this.difficulty = difficulty;
         //Creates a new player object
-        Player player = new Player(getPlayerFingers());
+        Player player = new Player();
+        this.player = player;
 
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy", player);
@@ -111,9 +112,13 @@ public class Morra {
 
   else if(difficulty == Difficulty.MEDIUM) {
     //if rounds is less than 3, jarvis would be easy
-    if(rounds < 3){
+    if(rounds <= 3){
       Jarvis = new Random();
     }
+    else{
+      Jarvis = StratergyFactory.getStratergy("Medium", player);
+    }
+
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
@@ -135,8 +140,11 @@ public class Morra {
     }
     
     allSumList.add(humanFingers);
+    player.sendToPlayer(humanFingers);;
+
   }
   rounds++;
+  
   }
 
   public int getPlayerFingers() {

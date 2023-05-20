@@ -38,4 +38,5 @@ public class Average implements Stratergy {
         return sum;
     }
     
+
 }
