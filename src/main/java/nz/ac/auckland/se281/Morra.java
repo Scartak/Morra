@@ -13,6 +13,7 @@ public class Morra {
   Stratergy Jarvis;
   Difficulty difficulty;
   int playerFingers;
+  Player player;
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
@@ -109,6 +110,10 @@ public class Morra {
   }
 
   else if(difficulty == Difficulty.MEDIUM) {
+    //if rounds is less than 3, jarvis would be easy
+    if(rounds < 3){
+      Jarvis = new Random();
+    }
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
