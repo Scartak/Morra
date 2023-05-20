@@ -18,6 +18,7 @@ public class Morra {
   Player player;
   int pointsToWin;
   String name;
+  int askAgain = 0;
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
@@ -57,7 +58,10 @@ public class Morra {
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
+
+    if(askAgain == 0){
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds));
+    }
 
     MessageCli.ASK_INPUT.printMessage();
 
@@ -71,12 +75,14 @@ public class Morra {
     //check if fingerString is an integer
     if(Utils.isInteger(fingerString) == false) {
       MessageCli.INVALID_INPUT.printMessage();
+      askAgain++;
       play();
       return;
     }
 
     if(Utils.isInteger(sumString) == false) {
       MessageCli.INVALID_INPUT.printMessage();
+      askAgain++;
       play();
       return;
     }
@@ -90,10 +96,12 @@ public class Morra {
     // Check if the input is valid
     if(humanFingers < 1 || humanFingers > 5 || humanSum < 1 || humanSum > 10 ) {
       MessageCli.INVALID_INPUT.printMessage();
+      askAgain++;
       play();
       return;
     }
-
+    
+    askAgain = 0;
     //Bring the name variable in play()
     String name = options[0];
     
