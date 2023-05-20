@@ -17,6 +17,7 @@ public class Morra {
   int jarvisPoints;
   Player player;
   int pointsToWin;
+  String name;
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
@@ -31,6 +32,7 @@ public class Morra {
     this.playerPoints = 0;
     this.jarvisPoints = 0;
     this.difficulty = difficulty;
+    this.name = options[0];
     //Creates a new player object
     Player player = new Player();
     this.player = player;
@@ -244,13 +246,16 @@ public class Morra {
     player.sendToPlayer(humanFingers);
   }
 
+  rounds++;
   if(jarvisPoints == pointsToWin){
-   MessageCli.END_GAME.printMessage("Jarvis", Integer.toString(rounds));
+   MessageCli.END_GAME.printMessage("Jarvis", Integer.toString(rounds-1));
+   rounds = 0;
   }
   else if(playerPoints == pointsToWin){
-    MessageCli.END_GAME.printMessage(name, Integer.toString(rounds));
+    MessageCli.END_GAME.printMessage(name, Integer.toString(rounds-1));
+    rounds = 0;
   }
-  rounds++;
+
   
   }
 
@@ -259,7 +264,15 @@ public class Morra {
 }
   
 
-  public void showStats() {}
+  public void showStats() {
+    if(rounds == 0){
+      MessageCli.GAME_NOT_STARTED.printMessage();
+    }
+      else{
+      MessageCli.PRINT_PLAYER_WINS.printMessage(name, Integer.toString(playerPoints), Integer.toString(pointsToWin-playerPoints));
+      MessageCli.PRINT_PLAYER_WINS.printMessage("Jarvis",Integer.toString(jarvisPoints), Integer.toString(pointsToWin-jarvisPoints));
+    }
+  }
 
 
 
