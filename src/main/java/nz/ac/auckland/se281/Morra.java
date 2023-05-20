@@ -12,36 +12,30 @@ public class Morra {
   public int rounds;
   Stratergy Jarvis;
   Difficulty difficulty;
+  int playerFingers;
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
-  double avgSum;
+  public Morra() {
 
-  public double getAverageSum() {
-    double sum = 0;
-    for(Integer i: allSumList) {
-      sum += i;
-    }
-    avgSum = sum/allSumList.size();
-    return avgSum;
   }
-
-
-  public Morra() {}
 
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
     MessageCli.WELCOME_PLAYER.printMessage(options);
     this.options = options;
     this.rounds = 1;
     this.difficulty = difficulty;
+        //Creates a new player object
+        Player player = new Player(getPlayerFingers());
+
     if(difficulty == Difficulty.EASY) {
-      Jarvis = StratergyFactory.getStratergy("Easy");
+      Jarvis = StratergyFactory.getStratergy("Easy", player);
     }
     else if (difficulty == Difficulty.MEDIUM) {
-      Jarvis = StratergyFactory.getStratergy("Medium");
+      Jarvis = StratergyFactory.getStratergy("Medium", player);
     }
     else if (difficulty == Difficulty.HARD) {
-      Jarvis = StratergyFactory.getStratergy("Hard");
+      Jarvis = StratergyFactory.getStratergy("Hard", player);
     }
       
   }
@@ -76,6 +70,8 @@ public class Morra {
     int humanFingers = Integer.parseInt(input.split(" ")[0]);
     int humanSum = Integer.parseInt(input.split(" ")[1]);
 
+
+    this.playerFingers = humanFingers;
     // Check if the input is valid
     if(humanFingers < 1 || humanFingers > 5 || humanSum < 1 || humanSum > 10 ) {
       MessageCli.INVALID_INPUT.printMessage();
@@ -138,5 +134,13 @@ public class Morra {
   rounds++;
   }
 
+  public int getPlayerFingers() {
+    return playerFingers;
+}
+  
+
   public void showStats() {}
+
+
+
 }

@@ -9,6 +9,12 @@ public class Average implements Stratergy {
 
     public int fingers;
     public  int sum;
+    public int avg;
+
+    public Average(int avg){
+        this.avg = avg;
+
+    }
     //create a morra object
     
 
@@ -17,8 +23,9 @@ public class Average implements Stratergy {
     @Override
     public void execute() {
         int tempFinger = Utils.getRandomNumber(1, 5);
-
-
+        int tempSum = avg + tempFinger;
+        this.fingers = tempFinger;
+        this.sum = tempSum;
     }
 
     @Override
