@@ -229,9 +229,11 @@ public class Morra {
     }
     else if(humanSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("HUMAN_WINS");
+      playerPoints++;
     }
     else if( jarvisSum == winSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("AI_WINS");
+      jarvisPoints++;
     }
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
@@ -239,7 +241,14 @@ public class Morra {
   
     
     allSumList.add(humanFingers);
-    player.sendToPlayer(humanFingers);;
+    player.sendToPlayer(humanFingers);
+  }
+
+  if(jarvisPoints == pointsToWin){
+   MessageCli.END_GAME.printMessage("Jarvis", Integer.toString(rounds));
+  }
+  else if(playerPoints == pointsToWin){
+    MessageCli.END_GAME.printMessage(name, Integer.toString(rounds));
   }
   rounds++;
   
