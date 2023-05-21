@@ -1318,6 +1318,34 @@ public void T7_02_round_counter_check() throws Exception {
  assertDoesNotContain(START_ROUND.getMessage("0"));
  assertDoesNotContain(START_ROUND.getMessage("2"));
 }
+@Test
+public void TY_01_attempt_at_running_invalid_commands_when_asking_for_fingers_and_sum()
+ throws Exception {
+ runCommands(
+ NEW_GAME + " EASY 10",
+ "Valerio",
+ //
+ PLAY,
+ NEW_GAME,
+ PLAY,
+ "1 5");
+
+ assertContains(ASK_INPUT.getMessage());
+ assertContains(INVALID_INPUT.getMessage());
+}
+
+@Test
+public void TY_02_attempt_show_stats_after_game_finish() throws Exception {
+ Utils.random = new java.util.Random(1);
+ runCommands(
+ NEW_GAME + " EASY 1",
+ "Valerio",
+ //
+ PLAY,
+ "1 2",
+ SHOW_STATS);
+ assertContains(GAME_NOT_STARTED.getMessage());
+}
   }
 
 

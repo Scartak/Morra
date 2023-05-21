@@ -67,6 +67,13 @@ public class Morra {
 
     String input = Utils.scanner.nextLine();
 
+    //check how many words the input has
+    if(input.split(" ").length != 2) {
+      MessageCli.INVALID_INPUT.printMessage();
+      askAgain++;
+      play();
+      return;
+    }
     // Convert the input string to valid integers and float for fingers and sum
 
     String fingerString = input.split(" ")[0];
