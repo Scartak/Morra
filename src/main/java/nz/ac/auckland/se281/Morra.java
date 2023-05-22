@@ -18,12 +18,13 @@ public class Morra {
   private Player player;
   private int pointsToWin;
   private String name;
-  private int askAgain = 0;
+  private int askAgain ;
 
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
   public Morra() {
+    askAgain = 0;
 
   }
 
