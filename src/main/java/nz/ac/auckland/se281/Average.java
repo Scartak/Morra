@@ -1,7 +1,5 @@
 package nz.ac.auckland.se281;
 
-import java.lang.reflect.Array;
-
 public class Average implements Stratergy {    
 
     public int fingers;

@@ -2,25 +2,23 @@ package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
 
-import javax.swing.text.html.Option;
-
 import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
   
   //initialising variables
 
-  public String [] options;
-  public int rounds;
-  Stratergy Jarvis;
-  Difficulty difficulty;
-  int playerFingers;
-  int playerPoints;
-  int jarvisPoints;
-  Player player;
-  int pointsToWin;
-  String name;
-  int askAgain = 0;
+  private String [] options;
+  private int rounds;
+  private Stratergy Jarvis;
+  private Difficulty difficulty;
+  private int playerFingers;
+  private int playerPoints;
+  private int jarvisPoints;
+  private Player player;
+  private int pointsToWin;
+  private String name;
+  private int askAgain = 0;
 
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
@@ -242,7 +240,7 @@ public class Morra {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
     
-    //send the fingers human chose into the arraylist and send it to the player class
+      //send the fingers human chose into the arraylist and send it to the player class
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;
   }
