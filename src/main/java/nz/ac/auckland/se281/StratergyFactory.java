@@ -12,6 +12,7 @@ public class StratergyFactory {
         //Get the most common number of fingers
         int mostCommonFing = player.getMostCommonFingers();
 
+        //Create a switch statement to get the stratergy
         switch(stratergy){
             case "Easy":
                 return new Random();
