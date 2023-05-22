@@ -10,7 +10,7 @@ public class Morra {
 
   private String [] options;
   private int rounds;
-  private Stratergy Jarvis;
+  private Stratergy strategy;
   private Difficulty difficulty;
   private int playerFingers;
   private int playerPoints;
@@ -47,13 +47,13 @@ public class Morra {
 
     // Creates a new Stratergy for the AI Jarvis based on the difficulty the player chose
     if(difficulty == Difficulty.EASY) {
-      Jarvis = StratergyFactory.getStratergy("Easy", player);
+      strategy = StratergyFactory.getStratergy("Easy", player);
     }
     else if (difficulty == Difficulty.MEDIUM) {
-      Jarvis = StratergyFactory.getStratergy("Medium", player);
+      strategy = StratergyFactory.getStratergy("Medium", player);
     }
     else if (difficulty == Difficulty.HARD) {
-      Jarvis = StratergyFactory.getStratergy("Hard", player);
+      strategy = StratergyFactory.getStratergy("Hard", player);
     }
       
   }
@@ -125,9 +125,9 @@ public class Morra {
 
     //Implements the easy difficulty
     if(difficulty == Difficulty.EASY) {
-    Jarvis.execute();
-    int jarvisFinger = Jarvis.getFinger();
-    int jarvisSum = Jarvis.getSum();
+    strategy.execute();
+    int jarvisFinger = strategy.getFinger();
+    int jarvisSum = strategy.getSum();
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
@@ -160,16 +160,16 @@ public class Morra {
 
     //if rounds is less than 3, jarvis would be set to easy
     if(rounds <= 3){
-      Jarvis = new Random();
+      strategy = new Random();
     }
     else{
-      Jarvis = StratergyFactory.getStratergy("Medium", player);
+      strategy = StratergyFactory.getStratergy("Medium", player);
     }
 
     //Get the numbers for jarvis
-    Jarvis.execute();
-    int jarvisFinger = Jarvis.getFinger();
-    int jarvisSum = Jarvis.getSum();
+    strategy.execute();
+    int jarvisFinger = strategy.getFinger();
+    int jarvisSum = strategy.getSum();
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
@@ -205,16 +205,16 @@ public class Morra {
 
     //if rounds is less than 3, jarvis would be easy
     if(rounds <= 3){
-      Jarvis = new Random();
+      strategy = new Random();
     }
     else{
-      Jarvis = StratergyFactory.getStratergy("Hard", player);
+      strategy = StratergyFactory.getStratergy("Hard", player);
     }
     
     //Get the numbers for jarvis
-    Jarvis.execute();
-    int jarvisFinger = Jarvis.getFinger();
-    int jarvisSum = Jarvis.getSum();
+    strategy.execute();
+    int jarvisFinger = strategy.getFinger();
+    int jarvisSum = strategy.getSum();
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
@@ -250,19 +250,19 @@ public class Morra {
 
     //if rounds is less than 3, jarvis would be easy otherwise the stratergy would alternateberween medium and hard
     if(rounds <= 3){
-      Jarvis = new Random();
+      strategy = new Random();
     }
     else if(rounds % 2 == 0){
-      Jarvis = StratergyFactory.getStratergy("Medium", player);
+      strategy = StratergyFactory.getStratergy("Medium", player);
     }
     else if(rounds % 2 != 0){
-      Jarvis = StratergyFactory.getStratergy("Hard", player);
+      strategy = StratergyFactory.getStratergy("Hard", player);
     }
 
     //Get the numbers for jarvis     
-    Jarvis.execute();
-    int jarvisFinger = Jarvis.getFinger();
-    int jarvisSum = Jarvis.getSum();
+    strategy.execute();
+    int jarvisFinger = strategy.getFinger();
+    int jarvisSum = strategy.getSum();
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);

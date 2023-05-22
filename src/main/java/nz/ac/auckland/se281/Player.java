@@ -30,6 +30,8 @@ public class Player {
     public int getMostCommonFingers(){
         int maxCount = 0;
         int maxFingers = 0;
+
+        //Loop through the array list and count the number of times each number appears
         for (int i: fingersList){
             int count = 0;
             for (int j: fingersList){
@@ -37,6 +39,7 @@ public class Player {
                     count++;
                 }
             }
+            //If the count is greater than the max count, set the max count to the count and the max fingers to the number
             if (count > maxCount){
                 maxCount = count;
                 maxFingers = i;
