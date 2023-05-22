@@ -5,12 +5,10 @@ import java.util.ArrayList;
 public class Player {
 
     //Create an array list to store the number of fingers the player has chosen
-    public ArrayList <Integer> fingersList = new ArrayList<Integer>();
-    int fingers;
+    private ArrayList <Integer> fingersList = new ArrayList<Integer>();
 
     // sends the current player finger choice to the array list
     public void sendToPlayer(int fingers){
-        this.fingers = fingers;
         fingersList.add(fingers);
     }
     

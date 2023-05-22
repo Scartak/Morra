@@ -21,7 +21,7 @@ public class Morra {
   private int askAgain ;
 
   //Create a public list of all the sums 
-  public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
+  private  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
   public Morra() {
     askAgain = 0;

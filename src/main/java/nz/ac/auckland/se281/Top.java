@@ -3,7 +3,7 @@ package nz.ac.auckland.se281;
 public class Top implements Stratergy {
     private int fingers;
     private  int sum;
-    int top;    
+    private int top;    
 
     //get the most common number of fingers that the player has chosen
     public Top(int mostCommonFing){
