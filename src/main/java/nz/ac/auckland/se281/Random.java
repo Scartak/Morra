@@ -7,7 +7,7 @@ public class Random implements Stratergy{
 
     @Override
     public void execute() {
-        // generate random number of fingers and sum
+        // generate random number of fingers and sum and set the sum = fingers + random number
         int tempFinger = Utils.getRandomNumber(1, 5);
         int tempSum = Utils.getRandomNumber(tempFinger+1, tempFinger+5);
 

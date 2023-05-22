@@ -3,15 +3,18 @@ package nz.ac.auckland.se281;
 import java.util.ArrayList;
 
 public class Player {
+
+    //Create an array list to store the number of fingers the player has chosen
     public ArrayList <Integer> fingersList = new ArrayList<Integer>();
     int fingers;
 
+    // sends the current player finger choice to the array list
     public void sendToPlayer(int fingers){
         this.fingers = fingers;
         fingersList.add(fingers);
     }
     
-
+    //Get the average number of fingers the player has chosen
     public double getAvgFingers(){
         double sum = 0;
         if(fingersList.size() > 1){
@@ -41,6 +44,4 @@ public class Player {
         }
         return maxFingers;
     }
-
-
 }

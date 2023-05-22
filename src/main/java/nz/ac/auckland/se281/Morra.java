@@ -8,6 +8,8 @@ import nz.ac.auckland.se281.Main.Difficulty;
 
 public class Morra {
   
+  //initialising variables
+
   public String [] options;
   public int rounds;
   Stratergy Jarvis;
@@ -19,6 +21,7 @@ public class Morra {
   int pointsToWin;
   String name;
   int askAgain = 0;
+
   //Create a public list of all the sums 
   public  ArrayList <Integer> allSumList = new ArrayList<Integer>();
 
@@ -26,20 +29,25 @@ public class Morra {
 
   }
 
+  //Create a new game
   public void newGame(Difficulty difficulty, int pointsToWin, String[] options) {
+    // the player is welcomed
     MessageCli.WELCOME_PLAYER.printMessage(options);
+
+    // the new game is initialised
     this.options = options;
     this.rounds = 1;
     this.playerPoints = 0;
     this.jarvisPoints = 0;
     this.difficulty = difficulty;
     this.name = options[0];
-    //Creates a new player object
+
+    //Creates a new player object and initialises properties of player
     Player player = new Player();
     this.player = player;
     this.pointsToWin = pointsToWin;
 
-
+    // Creates a new Stratergy for the AI Jarvis based on the difficulty the player chose
     if(difficulty == Difficulty.EASY) {
       Jarvis = StratergyFactory.getStratergy("Easy", player);
     }
@@ -53,12 +61,14 @@ public class Morra {
   }
 
   public void play() {
-
+    
+    //check if the game is started or not
     if(rounds == 0){
       MessageCli.GAME_NOT_STARTED.printMessage();
       return;
     }
-
+    
+    //Get the input from the player depending on the conditions
     if(askAgain == 0){
     MessageCli.START_ROUND.printMessage(Integer.toString(rounds));
     }
@@ -74,8 +84,8 @@ public class Morra {
       play();
       return;
     }
-    // Convert the input string to valid integers and float for fingers and sum
 
+    // Convert the input string to valid integers and float for fingers and sum
     String fingerString = input.split(" ")[0];
     String sumString = input.split(" ")[1];
 
@@ -87,6 +97,7 @@ public class Morra {
       return;
     }
 
+    //check if sumString is an integer
     if(Utils.isInteger(sumString) == false) {
       MessageCli.INVALID_INPUT.printMessage();
       askAgain++;
@@ -109,24 +120,26 @@ public class Morra {
     }
     
     askAgain = 0;
+
     //Bring the name variable in play()
     String name = options[0];
     
-    if(difficulty == Difficulty.EASY) {
-   
 
+    //Implements the easy difficulty
+    if(difficulty == Difficulty.EASY) {
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
-
 
     //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
 
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
+    //Get the winning number
     int winSum = humanFingers + jarvisFinger;
 
+    //Implements the logic for winning the round
     if(humanSum == jarvisSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
@@ -143,8 +156,11 @@ public class Morra {
     }
   }
 
+  // Implements the medium difficulty 
+
   else if(difficulty == Difficulty.MEDIUM) {
-    //if rounds is less than 3, jarvis would be easy
+
+    //if rounds is less than 3, jarvis would be set to easy
     if(rounds <= 3){
       Jarvis = new Random();
     }
@@ -152,16 +168,20 @@ public class Morra {
       Jarvis = StratergyFactory.getStratergy("Medium", player);
     }
 
+    //Get the numbers for jarvis
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
 
+    //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
 
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
+    //Get the winning number
     int winSum = humanFingers + jarvisFinger;
 
+    //Implements the logic for winning the round
     if(humanSum == jarvisSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
@@ -177,12 +197,14 @@ public class Morra {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     } 
     
+    //send the fingers human chose into the arraylist and send it to the player class
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;
 
   }
 
   else if(difficulty == Difficulty.HARD){
+
     //if rounds is less than 3, jarvis would be easy
     if(rounds <= 3){
       Jarvis = new Random();
@@ -191,16 +213,20 @@ public class Morra {
       Jarvis = StratergyFactory.getStratergy("Hard", player);
     }
     
+    //Get the numbers for jarvis
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
 
+    //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
 
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
+    //Get the winning number
     int winSum = humanFingers + jarvisFinger;
 
+    //Implements the logic for winning the round
     if(humanSum == jarvisSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
@@ -216,11 +242,15 @@ public class Morra {
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
     
+    //send the fingers human chose into the arraylist and send it to the player class
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);;
   }
 
+  // Implements the master difficulty for top stratergy
   else if(difficulty == Difficulty.MASTER){
+
+    //if rounds is less than 3, jarvis would be easy otherwise the stratergy would alternateberween medium and hard
     if(rounds <= 3){
       Jarvis = new Random();
     }
@@ -230,17 +260,21 @@ public class Morra {
     else if(rounds % 2 != 0){
       Jarvis = StratergyFactory.getStratergy("Hard", player);
     }
-     
+
+    //Get the numbers for jarvis     
     Jarvis.execute();
     int jarvisFinger = Jarvis.getFinger();
     int jarvisSum = Jarvis.getSum();
 
+    //Print the info of the hand
     MessageCli.PRINT_INFO_HAND.printMessage(name, fingerString, sumString);
 
     MessageCli.PRINT_INFO_HAND.printMessage("Jarvis", String.valueOf(jarvisFinger), String.valueOf(jarvisSum));
 
+    //Get the winning number
     int winSum = humanFingers + jarvisFinger;
 
+    //Implements the logic for winning the round
     if(humanSum == jarvisSum){
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
@@ -255,13 +289,15 @@ public class Morra {
     else{
       MessageCli.PRINT_OUTCOME_ROUND.printMessage("DRAW");
     }
-  
     
+    //send the fingers human chose into the arraylist and send it to the player class
     allSumList.add(humanFingers);
     player.sendToPlayer(humanFingers);
   }
 
   rounds++;
+
+  //implements the logic to win the game
   if(jarvisPoints == pointsToWin){
    MessageCli.END_GAME.printMessage("Jarvis", Integer.toString(rounds-1));
    rounds = 0;
@@ -269,16 +305,15 @@ public class Morra {
   else if(playerPoints == pointsToWin){
     MessageCli.END_GAME.printMessage(name, Integer.toString(rounds-1));
     rounds = 0;
+  } 
   }
 
-  
-  }
-
+  //gets the number of fingers the player chose
   public int getPlayerFingers() {
     return playerFingers;
 }
   
-
+  //displays the amount of rounds needed to win the game
   public void showStats() {
     if(rounds == 0){
       MessageCli.GAME_NOT_STARTED.printMessage();

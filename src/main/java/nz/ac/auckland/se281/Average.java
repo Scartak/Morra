@@ -2,25 +2,19 @@ package nz.ac.auckland.se281;
 
 import java.lang.reflect.Array;
 
-public class Average implements Stratergy {
-
-    Morra game;
-    
+public class Average implements Stratergy {    
 
     public int fingers;
     public  int sum;
     public int avg;
 
+    //get the average number of fingers that the player has chosen
     public Average(int avg){
         this.avg = avg;
-
     }
-    //create a morra object
-    
 
-
-    
     @Override
+    //get a random number for the finger and sum is the average number of fingers the player has chosen + finger
     public void execute() {
         int tempFinger = Utils.getRandomNumber(1, 5);
         int tempSum = avg + tempFinger;
