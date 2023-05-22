@@ -2,8 +2,8 @@ package nz.ac.auckland.se281;
 
 public class Random implements Stratergy{
 
-    public int fingers;
-    public  int sum;
+    private int fingers;
+    private  int sum;
 
     @Override
     public void execute() {

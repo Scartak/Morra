@@ -2,9 +2,9 @@ package nz.ac.auckland.se281;
 
 public class Average implements Stratergy {    
 
-    public int fingers;
-    public  int sum;
-    public int avg;
+    private int fingers;
+    private  int sum;
+    private int avg;
 
     //get the average number of fingers that the player has chosen
     public Average(int avg){
