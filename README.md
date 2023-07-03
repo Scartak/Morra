@@ -1,4 +1,1 @@
-# Assignment 1
-
-You will find instructions for this assignment on the course website.
-
+The Italian game of Morra where you and the computer throw fingers in a hand, and have to guess the sum. The computer can be set to different level of difficulties where it will use different stratergies.
